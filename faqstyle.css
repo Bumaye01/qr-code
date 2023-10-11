@@ -1,0 +1,166 @@
+body{
+  background-color: #ECF5F9;
+}
+
+header {
+  background-color: inherit;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 10px;
+  color: white;
+  transition: transform 0.3s, background-color 0.3s;
+}
+
+.header:hover {
+  transform: scale(1.05);
+  background-color: #0635C9;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: center;
+  width: 1000px;
+  margin-left: -100px;
+}
+
+.nav-link {
+  color: #59616D;
+  text-decoration: none;
+  margin: 0 25px;
+}
+
+.logo {
+
+  margin: 10px;
+  margin-left: 20px;
+}
+
+.answers{
+    text-align: center;
+    font-family: INTER;
+    font-size: 25px;
+    font-weight: 600;
+    color: #3D5D88;
+    word-wrap: break-word;
+    position: absolute;
+    margin-left: 300px;
+    margin-top: 15px;
+    width: 500px;
+}
+
+.faq-container {
+    margin: 2rem 8rem;
+    background-color: #fff;
+    width: 1000px;
+    height: 400px;
+    padding: 2.5rem 1rem;
+    margin-top: 70px;
+}
+.faq-group{
+    display: flex;
+}
+.faq-img {
+    width: auto;
+    height: 400px;
+    margin-left: 6rem;
+    display: table-cell;
+}
+.faq-right{
+    margin-left: 150px;
+}
+.faqinputs{
+    font-size: 25px;
+    color: #3D5D88;
+    font-weight: 700;
+    font-family: Inter;
+
+}
+.faq-inputs{
+    font-size: 20px;
+    color: #002454;
+    font-weight: 700;
+    font-family: Inter;
+}
+.lastline{
+    font-size: 15px;
+    color: #002454;
+    text-align: right;
+    font-family: Inter;
+    margin-right: 190px;
+}
+.still{
+    color: #002454;
+    font-family: Inter;
+    font-weight: 400;
+}
+.cntus{
+    font-family: Inter;
+    font-weight: 500;
+    color: #FFFFFF;
+    background-color: #3e61f4;
+    margin-left: 20px;
+    word-wrap: break-word;
+    border-radius: 7px;
+    border: #3e61f4;
+    height: 30px;
+    width: 115px;
+}
+.footer {
+  position: relative;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  padding: 20px;
+  background-color: transparent;
+}
+
+.social-icons {
+  display: flex;
+}
+
+.social-icons a {
+  margin: 0 10px;
+}
+
+.social-icons img {
+  width: 30px;
+  height: 30px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.social-icons img:hover {
+  transform: scale(1.2);
+}
+
+.dropbtn {
+    background-color: white;
+    color: #3D5D88;
+    padding: 16px;
+    font-size: 20px;
+    font-family: Inter;
+    font-weight: 700;
+    border: none;
+  }
+  
+  /* The container <div> - needed to position the dropdown content */
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  
+  .dropdown-content.show {
+    display: block;
+  }
+  
+
+  /* Change color of dropdown text to black */
+.dropdown-content {
+  display: none;
+  color: #000; /* Set the text color to black */
+  background-color: #fff; /* Set the background color */
+  padding: 10px; /* Add some padding for better spacing */
+  font-family: 'Inter', sans-serif; /* Use the specified font */
+  font-size: 16px; /* Adjust the font size as needed */
+}

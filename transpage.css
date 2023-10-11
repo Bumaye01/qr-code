@@ -1,0 +1,136 @@
+body{
+    background-color: #ECF5F9;
+}
+
+header {
+    background-color: inherit;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+    color: white;
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+.header:hover {
+    transform: scale(1.05);
+    background-color: #0635C9;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: center;
+    width: 1000px;
+    margin-left: -100px;
+}
+
+.nav-link {
+    color: #59616D;
+    text-decoration: none;
+    margin: 0 25px;
+}
+
+.logo {
+
+    margin: 10px;
+    margin-left: 20px;
+}
+
+.transactions-section {
+    /*   display: flex; */
+      flex: 1;
+      justify-content: center;
+      margin: 2rem 0rem ;
+  }
+  
+  .transactions-container {
+      background-color: white;
+      width: 1150px;
+      border-radius: 12px;
+      padding: 2rem 2rem;
+      min-height: 500px;
+  }
+  .form-container {
+      display: flex;
+      justify-content: end;
+  }
+  
+  
+  
+  input {
+      border: 3px solid rgba(128,128,128,0.2);
+      border-radius: 20px;
+      width: 180px;
+      padding: 12px;
+      margin-bottom: 16px
+  }
+  
+  .table-style {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      justify-content: center;
+      width: 1150px;
+  }
+  
+  table {
+      table-layout: fixed ;
+      border-collapse: collapse;
+  }
+  
+  
+  .table-header-row{
+      background-color: rgba(128,128,128,0.2);
+      border-radius: 16px;   
+      width: 80%;
+  }
+
+  th {
+    font-size: 20px;
+    font-weight: 500;
+    width: fit-content;
+    padding: 12px 24px;
+    text-align: left;
+}
+
+.table_body tr {
+    width: 100%;
+    border-bottom: 1px, solid, rgba(128,128,128,0.1);
+
+}
+
+td {
+    font-size: 16px;
+    font-weight: 400;
+    width: fit-content;
+    padding: 12px 24px;
+    text-align: left;
+    padding-right: 5rem;
+}
+
+.footer {
+    position: relative;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+    background-color: transparent;
+}
+
+.social-icons {
+    display: flex;
+}
+
+.social-icons a {
+    margin: 0 10px;
+}
+
+.social-icons img {
+    width: 30px;
+    height: 30px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.social-icons img:hover {
+    transform: scale(1.2);
+}

@@ -1,0 +1,223 @@
+/* styles.css */
+
+body{
+    background-color: #ECF5F9;
+}
+
+header {
+    background-color: inherit;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+    color: white;
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+.header:hover {
+    transform: scale(1.05);
+    background-color: #0635C9;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: center;
+    width: 1000px;
+    margin-left: -100px;
+}
+
+.nav-link {
+    color: #59616D;
+    text-decoration: none;
+    margin: 0 25px;
+}
+
+.logo {
+
+    margin: 10px;
+    margin-left: 20px;
+}
+
+.input-field {
+    color: var(--gray-500, #81899E);
+    font-family: Inter;
+    font-size: 14.47px;
+    font-style: normal;
+    font-weight: 400;
+    margin-bottom: 15px;
+    width: 100%;
+    padding: 15px;
+    box-sizing: border-box;
+    border: 1.206px solid var(--gray-100, #E6E7EC);
+}
+
+.please {
+    margin: 1rem 0.1rem;
+    color: var(--payaza-colors-payaza-blue-800, #0E2354);
+    font-family: Inter;
+    font-size: 24.117px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 28.94px; /* 120% */
+}
+
+.input-container {
+    position: relative;
+}
+
+.floating-label {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 14px;
+    pointer-events: none;
+    transition: 0.2s ease-out;
+    background-color: white;
+    padding: 0 5px;
+}
+
+.input-field:focus + .floating-label,
+.input-field.filled + .floating-label {
+    top: -12px;
+    left: 10px;
+    font-size: 12px;
+    color: #3E61F4;
+}
+
+.input-field.email,
+.input-field.phone,
+.input-field.amount,
+.input-field.narration {
+    width: 93%;
+}
+
+.input-field.filled + .floating-label {
+    top: -12px;
+    left: 10px;
+    font-size: 12px;
+    color: #3E61F4;
+}
+
+.name-container {
+    display: inline-block;
+    width: 45%;
+    margin-right: 10px;
+}
+
+.generate-btn {
+    background: var(--linear-blue, linear-gradient(90deg, #0635C9 0%, #3E61F4 100%));
+    color: white;
+    padding: 20px 30px;
+    border: none;
+    cursor: pointer;
+    width: 93%;
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+.generate-btn:hover {
+    transform: scale(1.05);
+    background-color: #0635C9;
+}
+
+.transaction-note {
+    text-align: center;
+    color: black;
+    margin-bottom: 1.5%;
+}
+
+
+
+
+
+
+
+.left-side {
+    color: #002454;
+    font-family: Inter;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    float: left;
+    padding: 40px;
+    height: 500px;
+    line-height: 40px;
+}
+
+.right-side {
+    margin: -35rem 38rem;
+    width: 39%;
+    float: left;
+    padding: 40px;
+    background-color: white;
+    height: 450px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: opacity 0.3s;
+}
+
+.phone-container {
+    display: flex;
+    align-items: center;
+  }
+  .phone-number{
+    color: #9CA4AC;
+    margin-left: 30px;
+    font-size: 20px;
+  }
+  .internet-container{
+    display: flex;
+    align-items: center;
+  }
+  .inter-net{
+    color: #9CA4AC;
+    margin-left: 30px;
+    font-size: 20px;
+  }
+  .location-container{
+    display: flex;
+    align-items: center;
+  }
+  .locate{
+    color: #9CA4AC;
+    margin-left: 30px;
+    font-size: 20px;
+  }
+
+.right-side p {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.blur {
+    filter: blur(5px);
+}
+
+/* Styles for the social icons at the bottom */
+.footer {
+    position: relative;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+    background-color: transparent;
+}
+
+.social-icons {
+    display: flex;
+}
+
+.social-icons a {
+    margin: 0 10px;
+}
+
+.social-icons img {
+    width: 30px;
+    height: 30px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.social-icons img:hover {
+    transform: scale(1.2);
+}

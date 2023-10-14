@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function () {
         var lastName = document.querySelector(".input-field.lastname").value;
         var email = document.querySelector(".input-field.email").value;
         var narration = document.querySelector(".input-field.narration").value;
-        var paymentCompletedButton = document.getElementById("confirm-payment-button");
+        // var paymentCompletedButton = document.getElementById("confirm-payment-button");
         document.getElementById("qr-code").innerHTML = "";
 
         var emailInputField = document.querySelector(".input-field.email");
@@ -98,8 +98,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const merchant_key = "QRP-" + new Date().getTime().toString();
         const saveTransactionURL = "https://qr-code-payaza-a13a16038b44.herokuapp.com/api/v1/qr-code/saveTransaction";
         let transaction_reference;
-        let uri = `https://payaza.africa/payment-page?merchant_key=PZ78-PKLIVE-BCCEB00C-87A4-4F2A-A25B-439315F2EF91&connection_mode=Live&checkout_amount=${amount}&currency_code=NGN&email_address=${email}&first_name=${firstName}&last_name=${lastName}&phone_number=%2B2348150746516&transaction_reference=${merchant_key}`;
-        let encoded = encodeURI(uri);
+        const maxDuration = 1 * 60 * 1000; // 5 minutes in milliseconds
 
         fetch(saveTransactionURL, {
             method: 'POST',
@@ -110,22 +109,40 @@ document.addEventListener('DOMContentLoaded', function () {
         })
             .then(response => {
             if (!response.ok) {
-                qrCodeContainer.style.display = 'block';
-                qrCodeContainer.innerText = "This is a duplicate transaction. Please hold on as it is still processing"
-                paymentCompletedButton.style.display = 'block';
                 throw new Error(`POST Request failed with status: ${response.status}`);
             }
-            const qr = new QRCode(document.getElementById("qr-code"), {
-                text: encoded,
-                width: 300,
-                height: 300,
-            });
-            qrCodeContainer.style.display = 'block';
-            paymentCompletedButton.style.display = 'block';
             return "save transaction response", response.json();
             })
             .then(saveTransactionResponse => {
             transaction_reference = saveTransactionResponse.transactionReference;
+
+            console.log('this is the transaction reference', transaction_reference);
+            function fetchData() {
+                fetch(`https://qr-code-payaza-a13a16038b44.herokuapp.com/api/v1/qr-code/getTransactionStatusByReference?transactionReference=${transaction_reference}`)
+                .then((response) => response.text())
+                .then(checkStatus => {
+                    if (checkStatus == "Pending") {
+                        // Stop calling API after 5 minutes
+                        const currentTime = Date.now();
+                        if (currentTime - startTime >= maxDuration) {
+                            clearInterval(intervalId);
+                            location.reload(true);
+                            console.log("Stopped calling API after 5 minutes.");
+                            // code to redirect to homepage
+                        }
+                    } else if (checkStatus == "Successful") {
+                        // show a success screen and a button to go to homepage
+                        console.log("transaction was successful", checkStatus);
+                    }
+                })
+                .catch(error => console.error("Error: ", error)); 
+            }
+            
+            const startTime = Date.now(); // Record the start time
+            fetchData();
+
+            // Call fetchData every 5 seconds using setInterval
+            const intervalId = setInterval(fetchData, 5000);
         
             const getMerchantReferenceURL = `https://qr-code-payaza-a13a16038b44.herokuapp.com/api/v1/qr-code/getMerchantReference?transactionReference=${transaction_reference}&merchantReference=${merchant_key}`;
         
@@ -144,10 +161,23 @@ document.addEventListener('DOMContentLoaded', function () {
             console.error('Error:', error);
         });
 
-        
+        let uri = `https://payaza.africa/payment-page?merchant_key=PZ78-PKLIVE-BCCEB00C-87A4-4F2A-A25B-439315F2EF91&connection_mode=Live&checkout_amount=${amount}&currency_code=NGN&email_address=${email}&first_name=${firstName}&last_name=${lastName}&phone_number=%2B2348150746516&transaction_reference=${merchant_key}`;
+        let encoded = encodeURI(uri);
+
+        const qr = new QRCode(document.getElementById("qr-code"), {
+            text: "true",
+            width: 300,
+            height: 300,
+        });
+
+        qrCodeContainer.style.display = 'block';
+        // paymentCompletedButton.style.display = 'block';
         var transactionStatus = "";
 
-        fetch("https://qr-code-payaza-a13a16038b44.herokuapp.com/api/v1/qr-code/callbackResponse")
+        fetch("https://qr-code-payaza-a13a16038b44.herokuapp.com/api/v1/qr-code/callbackResponse", {
+            method: 'POST',
+            body: JSON.stringify({}),
+        })
         .then(response => response.json())
         .then((responseJson) => {
             transactionStatus = responseJson['transaction_status']
@@ -155,22 +185,23 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(console.log(transactionStatus))
         .catch(error => console.error("Error: ", error));
 
-        if (transactionStatus == "Funds Received") {
-            // display the successful page
-            qrCodeContainer.innerHTML = '';
-            const successContainer = document.createElement('div');
-            successContainer.classList.add('success-container');
-            successContainer.classList.add('success-image');
-            const successImage = document.createElement('img');
-            successImage.src = "successful-withdrawals-128.png";
-            successImage.alt = "success";
-            successContainer.appendChild(successImage);
-            const textSpan = document.createElement('span');
-            textSpan.classList.add('tick-text');
-            textSpan.textContent = 'Payment Successful, Transaction Reference: 1234567'; // Text to be displayed
-            successContainer.appendChild(textSpan);
-            qrCodeContainer.appendChild(successContainer);
-        }
+        // if (transactionStatus == "Funds Received") {
+        //     // display the successful page
+        //     qrCodeContainer.innerHTML = '';
+        //     const successContainer = document.createElement('div');
+        //     successContainer.classList.add('success-container');
+        //     successContainer.classList.add('success-image');
+        //     const successImage = document.createElement('img');
+        //     successImage.src = "successful-withdrawals-128.png";
+        //     successImage.alt = "success";
+        //     successContainer.appendChild(successImage);
+        //     const textSpan = document.createElement('span');
+        //     textSpan.classList.add('tick-text');
+        //     textSpan.textContent = 'Payment Successful, Transaction Reference: 1234567'; // Text to be displayed
+        //     successContainer.appendChild(textSpan);
+        //     qrCodeContainer.appendChild(successContainer);
+        // }
+
     }
 
     function togglePageBlur() {
